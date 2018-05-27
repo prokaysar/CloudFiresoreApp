@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "488162774604",
+    "firebase_url": "https://cloudfiresoreapp.firebaseio.com",
+    "project_id": "cloudfiresoreapp",
+    "storage_bucket": "cloudfiresoreapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488162774604:android:300f701cdbf4353b",
+        "android_client_info": {
+          "package_name": "me.prokawsar.cloudfiresoreapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488162774604-rkas5sgso2p35rojh0in8b5e002mqmi2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.prokawsar.cloudfiresoreapp",
+            "certificate_hash": "74e822a3a0aa1c2bc0e08834a33f7bccbbae75bf"
+          }
+        },
+        {
+          "client_id": "488162774604-afm3v85pi07r02pu5ovrn1r2sdm6ek45.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "488162774604-afm3v85pi07r02pu5ovrn1r2sdm6ek45.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzH-AfLFJdi1eMBonvTkKypH9QHo6c0nc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488162774604-afm3v85pi07r02pu5ovrn1r2sdm6ek45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
