@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowData"></activity>
+        <activity android:name=".ShowData" />
+        <activity android:name=".UpdateActivity"></activity>
     </application>
 
 </manifest>

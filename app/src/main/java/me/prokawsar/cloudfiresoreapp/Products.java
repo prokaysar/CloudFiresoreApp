@@ -1,6 +1,11 @@
 package me.prokawsar.cloudfiresoreapp;
 
-public class Products {
+import com.google.firebase.firestore.Exclude;
+
+import java.io.Serializable;
+
+public class Products implements Serializable{
+    @Exclude private String id;
     private String name,brand,desc;
     private double price;
     private int qty;
@@ -14,6 +19,14 @@ public class Products {
         this.desc = desc;
         this.price = price;
         this.qty = qty;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

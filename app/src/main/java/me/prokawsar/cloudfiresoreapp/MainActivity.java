@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameText = findViewById(R.id.name_id);
-        brandText = findViewById(R.id.brand_id);
-        descText = findViewById(R.id.desc_id);
-        prizeText = findViewById(R.id.prize_id);
-        qualityText = findViewById(R.id.quality_id);
-        saveButton = findViewById(R.id.save_id);
+        nameText = findViewById(R.id.uname_id);
+        brandText = findViewById(R.id.ubrand_id);
+        descText = findViewById(R.id.udesc_id);
+        prizeText = findViewById(R.id.uprize_id);
+        qualityText = findViewById(R.id.uquality_id);
+        saveButton = findViewById(R.id.update_id);
         showButton = findViewById(R.id.show_button);
 
         mDatabase = FirebaseFirestore.getInstance();
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
        String price = prizeText.getText().toString().trim();
        String qty = qualityText.getText().toString().trim();
        switch(v.getId()){
-           case R.id.save_id:
+           case R.id.update_id:
                 if (!validateInputs(name,brand,desc,price,qty)){
 
            CollectionReference dbProducts = mDatabase.collection("Products");

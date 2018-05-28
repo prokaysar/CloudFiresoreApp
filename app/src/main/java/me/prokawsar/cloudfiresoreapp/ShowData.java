@@ -1,8 +1,11 @@
 package me.prokawsar.cloudfiresoreapp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -35,6 +38,16 @@ public class ShowData extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_id);
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,productList);
         listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Products products = productList.get(position);
+                Intent intent = new Intent(ShowData.this,UpdateActivity.class);
+                intent.putExtra("products",products);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -49,6 +62,9 @@ public class ShowData extends AppCompatActivity {
                            List<DocumentSnapshot> list = documentSnapshots.getDocuments();
                            for (DocumentSnapshot data : list){
                                Products products = data.toObject(Products.class);
+                               //id
+                               products.setId(data.getId());
+
                                productList.add(products);
                            }
                            adapter.notifyDataSetChanged();
