@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText nameText,brandText,descText,prizeText,qualityText;
-    private Button saveButton;
+    private Button saveButton,showButton;
     private FirebaseFirestore mDatabase;
 
 
@@ -31,10 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         prizeText = findViewById(R.id.prize_id);
         qualityText = findViewById(R.id.quality_id);
         saveButton = findViewById(R.id.save_id);
+        showButton = findViewById(R.id.show_button);
 
         mDatabase = FirebaseFirestore.getInstance();
 
         saveButton.setOnClickListener(this);
+        showButton.setOnClickListener(this);
+
 
 
     }
@@ -74,37 +77,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         String name = nameText.getText().toString().trim();
-        String brand = brandText.getText().toString().trim();
-        String desc = descText.getText().toString().trim();
-        String price = prizeText.getText().toString().trim();
-        String qty = qualityText.getText().toString().trim();
+       String brand = brandText.getText().toString().trim();
+       String desc = descText.getText().toString().trim();
+       String price = prizeText.getText().toString().trim();
+       String qty = qualityText.getText().toString().trim();
+       switch(v.getId()){
+           case R.id.save_id:
+                if (!validateInputs(name,brand,desc,price,qty)){
 
-        if (!validateInputs(name,brand,desc,price,qty)){
+           CollectionReference dbProducts = mDatabase.collection("Products");
+           Products products = new Products(
+                   name,
+                   brand,
+                   desc,
+                   Double.parseDouble(price),
+                   Integer.parseInt(qty)
+           );
+           dbProducts.add(products)
+                   .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                       @Override
+                       public void onSuccess(DocumentReference documentReference) {
 
-            CollectionReference dbProducts = mDatabase.collection("Products");
-            Products products = new Products(
-                    name,
-                    brand,
-                    desc,
-                    Double.parseDouble(price),
-                    Integer.parseInt(qty)
-            );
-            dbProducts.add(products)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
+                           Toast.makeText(MainActivity.this, "New Products are added.", Toast.LENGTH_SHORT).show();
+                       }
+                   })
+                   .addOnFailureListener(new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
 
-                            Toast.makeText(MainActivity.this, "New Products are added.", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                           Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                       }
+                   });
+       }
+               break;
+                case R.id.show_button:
+                     startActivity(new android.content.Intent(MainActivity.this,ShowData.class));
 
-                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
-
-    }
+                     break;
 }
+
+
+
+   }
+}
+

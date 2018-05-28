@@ -35,4 +35,9 @@ public class Products {
     public int getQty() {
         return qty;
     }
+
+    @Override
+    public String toString() {
+        return name +"\n"+brand+"\n"+desc+"\n"+price+"\n"+qty;
+    }
 }
